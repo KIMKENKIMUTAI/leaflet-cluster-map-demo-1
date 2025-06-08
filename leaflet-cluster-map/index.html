@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Leaflet Marker Clustering Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([37.7749, -122.4194], 10); // San Francisco
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Create a marker cluster group
+    var markers = L.markerClusterGroup();
+
+    // Example point data
+    var data = [
+      [37.7749, -122.4194],
+      [37.7750, -122.4195],
+      [37.7751, -122.4196],
+      [37.8044, -122.2711],
+      [37.7844, -122.4011],
+      [37.7644, -122.4311],
+      [37.7844, -122.4411],
+      [37.7644, -122.4111],
+      [37.7544, -122.4211]
+    ];
+
+    // Add markers to the cluster group
+    data.forEach(function (coords) {
+      var marker = L.marker(coords);
+      markers.addLayer(marker);
+    });
+
+    // Add cluster group to the map
+    map.addLayer(markers);
+  </script>
+</body>
+</html>
